@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <button id="backButton">Back</button>
+    <button id="forwardButton">Forward</button>
+    <button id="reloadButton">Reload</button>
+    <input type="text" id="urlInput" placeholder="Enter URL" value="https://www.google.com/">
+    <button id="goButton">Go</button>
+    <p id="currentUrl"></p>
+
+    <button id="openNewTabButton">Open New Tab</button>
+
+    <script>
+        const backButton = document.getElementById('backButton');
+        const forwardButton = document.getElementById('forwardButton');
+        const reloadButton = document.getElementById('reloadButton');
+        const urlInput = document.getElementById('urlInput');
+        const goButton = document.getElementById('goButton');
+        const currentUrl = document.getElementById('currentUrl');
+
+        // Function to update the displayed URL
+        function updateCurrentUrl() {
+            currentUrl.innerText = window.location.href;
+        }
+
+        // Handle back button click
+        backButton.addEventListener('click', () => {
+            window.history.back();
+            updateCurrentUrl();
+        });
+
+        // Handle forward button click
+        forwardButton.addEventListener('click', () => {
+            window.history.forward();
+            updateCurrentUrl();
+        });
+
+        // Handle reload button click
+        reloadButton.addEventListener('click', () => {
+            window.location.reload();
+        });
+
+        // Handle go button click
+        goButton.addEventListener('click', () => {
+            const url = urlInput.value;
+            window.location.href = url;
+            updateCurrentUrl();
+        });
+
+        // Handle enter key press in the URL input
+        urlInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                const url = urlInput.value;
+                window.location.href = url;
+                updateCurrentUrl();
+            }
+        });
+
+        // Update the displayed URL on load
+        window.addEventListener('load', () => {
+            updateCurrentUrl();
+        });
+
+
+
+    </script>
+</body>
+
+</html>
